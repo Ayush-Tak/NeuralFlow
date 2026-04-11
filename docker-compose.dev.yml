@@ -1,0 +1,48 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - apps/api/.env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://neuralflow:neuralflow_dev@postgres:5432/neuralflow
+    volumes:
+      - ./apps/api:/app
+      - ./packages/mcp-servers:/app/packages/mcp-servers
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      target: deps
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/web/node_modules
+    command: pnpm --filter @neuralflow/web dev
+    depends_on:
+      - api
+
+  postgres:
+    image: postgres:16
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: neuralflow
+      POSTGRES_USER: neuralflow
+      POSTGRES_PASSWORD: neuralflow_dev
+    volumes:
+      - neuralflow_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  neuralflow_postgres_data:
