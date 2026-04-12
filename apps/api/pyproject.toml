@@ -1,0 +1,43 @@
+[project]
+name = "neuralflow-api"
+version = "0.1.0"
+description = "FastAPI backend for NeuralFlow."
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy[asyncio]",
+    "asyncpg",
+    "alembic",
+    "python-jose[cryptography]",
+    "passlib[bcrypt]",
+    "google-api-python-client",
+    "google-auth-oauthlib",
+    "google-auth-httplib2",
+    "mcp",
+    "langgraph",
+    "langchain-mcp-adapters",
+    "langchain-google-genai",
+    "langchain-groq",
+    "httpx",
+    "python-dotenv",
+    "pydantic-settings",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest",
+    "pytest-asyncio",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["config", "main"]
+packages = ["agents", "db", "engine", "models", "routers", "services"]
+
+[tool.uvicorn]
+factory = false
