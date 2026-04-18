@@ -1,0 +1,409 @@
+/* ============================================
+   NeuralFlow — Design System
+   ============================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+  /* Colors — Dark Theme */
+  --bg-primary: #09090b;
+  --bg-secondary: #18181b;
+  --bg-tertiary: #27272a;
+  --bg-elevated: #1c1c1f;
+  --bg-glass: rgba(24, 24, 27, 0.7);
+  --bg-glass-hover: rgba(39, 39, 42, 0.8);
+
+  /* Surface colors */
+  --surface-1: #0f0f12;
+  --surface-2: #16161a;
+  --surface-3: #1e1e23;
+
+  /* Text */
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-muted: #52525b;
+
+  /* Accent — Electric Violet/Indigo gradient */
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #6366f1;
+  --accent-tertiary: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.15);
+  --accent-glow-strong: rgba(139, 92, 246, 0.3);
+
+  /* Semantic Colors */
+  --success: #22c55e;
+  --success-glow: rgba(34, 197, 94, 0.15);
+  --warning: #f59e0b;
+  --warning-glow: rgba(245, 158, 11, 0.15);
+  --error: #ef4444;
+  --error-glow: rgba(239, 68, 68, 0.15);
+  --info: #3b82f6;
+  --info-glow: rgba(59, 130, 246, 0.15);
+
+  /* Node Type Colors */
+  --node-trigger: #f59e0b;
+  --node-ai: #8b5cf6;
+  --node-google-cal: #4285f4;
+  --node-gmail: #ea4335;
+  --node-github: #71717a;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-default: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.16);
+  --border-accent: rgba(139, 92, 246, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+  --shadow-glow-strong: 0 0 40px var(--accent-glow-strong);
+
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, #8b5cf6, #6366f1, #3b82f6);
+  --gradient-surface: linear-gradient(180deg, var(--surface-2), var(--surface-1));
+  --gradient-border: linear-gradient(135deg, rgba(139, 92, 246, 0.5), rgba(99, 102, 241, 0.2), rgba(59, 130, 246, 0.5));
+  --gradient-mesh: radial-gradient(at 40% 20%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+                   radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.06) 0px, transparent 50%),
+                   radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 72px;
+  --topbar-height: 64px;
+  --content-max-width: 1400px;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Mesh gradient background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: var(--gradient-mesh);
+  pointer-events: none;
+  z-index: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--accent-glow-strong);
+  color: var(--text-primary);
+}
+
+/* ---------- Utility Classes ---------- */
+
+/* Text */
+.text-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass Effect */
+.glass {
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-hover);
+}
+
+/* Gradient Border */
+.gradient-border {
+  position: relative;
+  background: var(--surface-2);
+  border-radius: var(--radius-lg);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: var(--gradient-border);
+  z-index: -1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+/* Glow effect */
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-strong {
+  box-shadow: var(--shadow-glow-strong);
+}
+
+/* Pulse animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-glow-strong);
+  }
+}
+
+.pulse {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Status indicators */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.status-dot--online {
+  background: var(--success);
+  box-shadow: 0 0 8px var(--success-glow);
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-dot--offline {
+  background: var(--text-muted);
+}
+
+.status-dot--error {
+  background: var(--error);
+  box-shadow: 0 0 8px var(--error-glow);
+}
+
+/* Shimmer loading */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--surface-2) 25%,
+    var(--surface-3) 50%,
+    var(--surface-2) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* ---------- Layout ---------- */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.app-main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  transition: margin-left var(--duration-slow) var(--ease-out);
+}
+
+.app-main--collapsed {
+  margin-left: var(--sidebar-collapsed);
+}
+
+.app-content {
+  padding: var(--space-8);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-top: calc(var(--topbar-height) + var(--space-8));
+}
+
+/* ---------- React Flow Overrides ---------- */
+.react-flow__background {
+  background: var(--bg-primary) !important;
+}
+
+.react-flow__minimap {
+  background: var(--surface-2) !important;
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  overflow: hidden;
+}
+
+.react-flow__controls {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border-subtle) !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.react-flow__controls-button {
+  background: var(--surface-2) !important;
+  border-color: var(--border-subtle) !important;
+  color: var(--text-secondary) !important;
+  fill: var(--text-secondary) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--surface-3) !important;
+  color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
+}
+
+.react-flow__edge-path {
+  stroke: var(--border-hover) !important;
+  stroke-width: 2 !important;
+}
+
+.react-flow__edge.selected .react-flow__edge-path,
+.react-flow__edge:hover .react-flow__edge-path {
+  stroke: var(--accent-primary) !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .app-main {
+    margin-left: 0;
+  }
+
+  .app-content {
+    padding: var(--space-4);
+    padding-top: calc(var(--topbar-height) + var(--space-4));
+  }
+}
