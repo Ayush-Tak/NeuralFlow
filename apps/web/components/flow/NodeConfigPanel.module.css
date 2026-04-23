@@ -1,0 +1,184 @@
+.panel {
+  width: 320px;
+  background: var(--surface-1);
+  border-left: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.headerTitle {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: all 0.15s;
+}
+
+.closeBtn:hover {
+  color: var(--text-primary);
+  background: var(--surface-2);
+}
+
+.body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fieldLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required {
+  color: var(--error);
+  font-size: 0.7rem;
+}
+
+.input,
+.select,
+.textarea {
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.toolOption {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-2);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toolOption:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-3);
+}
+
+.toolOptionActive {
+  border-color: var(--accent-primary);
+  background: rgba(139, 92, 246, 0.08);
+}
+
+.toolOptionName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.toolOptionDesc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.contextHint {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+.deleteBtn {
+  margin-top: 8px;
+  padding: 8px;
+  background: none;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.deleteBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.nodeId {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  padding: 4px 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  word-break: break-all;
+}

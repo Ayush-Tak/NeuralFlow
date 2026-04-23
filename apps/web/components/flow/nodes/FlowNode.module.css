@@ -1,0 +1,93 @@
+/* Shared styles for all custom flow nodes */
+
+.node {
+  background: var(--surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  min-width: 180px;
+  max-width: 240px;
+  transition: all 0.15s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.node:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.nodeSelected {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px var(--accent-glow), var(--shadow-md) !important;
+}
+
+/* Header */
+.nodeHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.nodeIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nodeType {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.nodeLabel {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+}
+
+.nodeDetail {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-top: var(--space-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Node type borders */
+.nodeTrigger { border-left: 3px solid var(--node-trigger); }
+.nodeAI { border-left: 3px solid var(--node-ai); }
+.nodeIntegration { border-left: 3px solid var(--node-google-cal); }
+
+/* Icon colors */
+.iconTrigger { background: rgba(245, 158, 11, 0.15); color: var(--node-trigger); }
+.iconAI { background: rgba(139, 92, 246, 0.15); color: var(--node-ai); }
+.iconGCal { background: rgba(66, 133, 244, 0.15); color: var(--node-google-cal); }
+.iconGmail { background: rgba(234, 67, 53, 0.15); color: var(--node-gmail); }
+.iconGDrive { background: rgba(66, 133, 244, 0.15); color: var(--node-google-cal); }
+.iconGithub { background: rgba(113, 113, 122, 0.15); color: var(--node-github); }
+
+/* Handle */
+.handle {
+  width: 10px !important;
+  height: 10px !important;
+  background: var(--surface-3) !important;
+  border: 2px solid var(--border-hover) !important;
+  transition: all 0.15s ease;
+}
+
+.handle:hover {
+  background: var(--accent-primary) !important;
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
