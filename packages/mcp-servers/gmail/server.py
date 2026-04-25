@@ -25,7 +25,11 @@ def _load_credentials() -> Credentials:
     except json.JSONDecodeError as exc:
         raise RuntimeError("GOOGLE_TOKEN_JSON must be valid JSON") from exc
 
-    return Credentials.from_authorized_user_info(token_info)
+    creds = Credentials.from_authorized_user_info(token_info)
+    if creds.expired and creds.refresh_token:
+        from google.auth.transport.requests import Request
+        creds.refresh(Request())
+    return creds
 
 
 def _gmail_service() -> Any:
