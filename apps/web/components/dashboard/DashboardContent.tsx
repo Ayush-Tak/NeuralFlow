@@ -57,7 +57,7 @@ export default function DashboardContent() {
     e.preventDefault();
     e.stopPropagation();
     try {
-      await fetch(`http://localhost:8000/flows/${flowId}/execute`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}/flows/${flowId}/execute`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       });

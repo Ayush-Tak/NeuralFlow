@@ -176,7 +176,7 @@ async def google_callback(
         google_token=credentials,
     )
     token = create_access_token(str(user.id))
-    return RedirectResponse(f"http://localhost:3000/auth/callback?token={token}")
+    return RedirectResponse(f"{settings.frontend_url}/auth/callback?token={token}")
 
 
 @router.get("/github/login")
@@ -277,7 +277,7 @@ async def github_callback(
 
         user.github_token = token_payload
         await db.commit()
-        return RedirectResponse("http://localhost:3000/")
+        return RedirectResponse(f"{settings.frontend_url}/")
 
     if not email:
         raise HTTPException(status_code=400, detail="Unable to resolve GitHub email")
@@ -290,7 +290,7 @@ async def github_callback(
         github_token=token_payload,
     )
     token = create_access_token(str(user.id))
-    return RedirectResponse(f"http://localhost:3000/auth/callback?token={token}")
+    return RedirectResponse(f"{settings.frontend_url}/auth/callback?token={token}")
 
 
 @router.get("/me", response_model=UserResponse)

@@ -25,11 +25,13 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         await disconnect_db()
 
 
+from config import settings
+
 app = FastAPI(title="NeuralFlow API", version="0.1.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[str(settings.frontend_url).rstrip("/")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
